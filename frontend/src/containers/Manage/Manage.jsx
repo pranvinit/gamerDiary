@@ -58,15 +58,6 @@ export default function Manage() {
 				if (res.data.gamers && res.data.gamers.length !== 0) {
 					setGamers(res.data.gamers);
 				}
-				let money = 0;
-				let time = 0;
-
-				gamers.map((gamer) => {
-					money += gamer.totalMoneyPaid;
-					time += gamer.totalTime;
-				});
-				setTotalMoney(money);
-				setTotalTime(time);
 				setLoading(false);
 			})
 			.catch((err) => {
@@ -80,6 +71,18 @@ export default function Manage() {
 				setLoading(false);
 			});
 	}, []);
+
+	useEffect(() => {
+		let money = 0;
+		let time = 0;
+
+		gamers.map((gamer) => {
+			money += gamer.totalMoneyPaid;
+			time += gamer.totalTime;
+		});
+		setTotalMoney(money);
+		setTotalTime(time);
+	}, [gamers])
 
 	const handleLogout = () => {
 		localStorage.removeItem('adminJwtToken');

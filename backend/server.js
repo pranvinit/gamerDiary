@@ -26,8 +26,8 @@ app.use(authoriseAdmin);
 
 //Disabled to get accurate errors
 
-// app.use(errorMiddleware);
-// app.use(notFound);
+app.use(errorMiddleware);
+app.use(notFound);
 
 app.listen(PORT, () =>
 	console.log(`Server running at http://127.0.0.1:${PORT}`),
